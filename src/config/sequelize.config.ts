@@ -1,6 +1,6 @@
 // ================================================================>> Core Library
-import { Dialect } from "sequelize";
-import { SequelizeOptions } from "sequelize-typescript";
+import { Dialect } from 'sequelize';
+import { SequelizeOptions } from 'sequelize-typescript';
 
 // ================================================================>> Third Party Library
 import * as dotenv from 'dotenv';
@@ -8,10 +8,10 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 /** @MySql and @Postgresql */
-const sequlizeConfig: SequelizeOptions = {
+const sequelizeConfig: SequelizeOptions = {
     dialect: process.env.DB_CONNECTION as Dialect || 'mysql',
     host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
+    port: Number(process.env.DB_PORT) || 3306, // Default MySQL port if not specified
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
@@ -19,4 +19,4 @@ const sequlizeConfig: SequelizeOptions = {
     logging: false
 };
 
-export default sequlizeConfig;
+export default sequelizeConfig;

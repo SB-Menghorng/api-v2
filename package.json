@@ -2,7 +2,7 @@
   "name": "api-v3",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "menghorng",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -35,6 +35,7 @@
     "mysql2": "^3.10.3",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
+    "readline-sync": "^1.4.10",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "sequelize": "^6.37.3",
