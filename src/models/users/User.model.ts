@@ -1,15 +1,15 @@
 // ================================================================>> Third Party Library
 import { Model, Column, Table, BelongsTo, ForeignKey, DataType, HasMany } from 'sequelize-typescript';
 
-// ================================================================>> Costom Library
-import UsersType            from './type.model';
-import Department           from './Department.model';
-import Position             from './Position.model'; 
-import UsersJob             from './Job.model';   
-import UsersTitle           from './Title.model';
-import UserLogs             from './Log.model';
-import UserVerifiedCodes from './code.model';
-import { UsersActiveEnum }  from '../../app/enums/user/active.enum';
+// ================================================================>> Custom Library
+import UsersType from './Type.model';
+import Department from './Department.model';
+import Position from './Position.model';
+import UsersJob from './Job.model';
+import UsersTitle from './Title.model';
+import UserLogs from './Log.model';
+import UserVerifiedCodes from './Code.model';
+import { UsersActiveEnum } from '../../app/enums/user/active.enum';
 
 @Table({ tableName: 'user', createdAt: 'created_at', updatedAt: 'updated_at' })
 class User extends Model<User> {
@@ -17,31 +17,39 @@ class User extends Model<User> {
     id: number;
 
     @ForeignKey(() => UsersType)
-    @Column({ onDelete: 'CASCADE'})
-    type_id?: number;
+    @Column({ type: DataType.INTEGER, allowNull: false, onDelete: 'CASCADE' })
+    type_id: number;
 
     @BelongsTo(() => UsersType)
     type: UsersType;
 
     @ForeignKey(() => UsersTitle)
-    @Column({ type: DataType.INTEGER, allowNull: true })
+    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
     title_id?: number;
 
-    
     @BelongsTo(() => UsersTitle)
     title: UsersTitle;
 
     @ForeignKey(() => Department)
-    @Column({ type: DataType.INTEGER, allowNull: true })
+    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
     department_id?: number;
 
+    @BelongsTo(() => Department)
+    department: Department;
+
     @ForeignKey(() => Position)
-    @Column({ type: DataType.INTEGER, allowNull: true })
+    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
     position_id?: number;
 
+    @BelongsTo(() => Position)
+    position: Position;
+
     @ForeignKey(() => UsersJob)
-    @Column({ type: DataType.INTEGER, allowNull: true })
+    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
     job_id?: number;
+
+    @BelongsTo(() => UsersJob)
+    job: UsersJob;
 
     @Column({ type: DataType.INTEGER, allowNull: true })
     sex_id?: number;
@@ -89,26 +97,25 @@ class User extends Model<User> {
     is_approved: number;
 
     @ForeignKey(() => User)
-    @Column({ type: DataType.INTEGER, allowNull: true })
+    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
     creator_id?: number;
 
     @BelongsTo(() => User, 'creator_id')
     creator: User;
 
     @ForeignKey(() => User)
-    @Column({ type: DataType.INTEGER, allowNull: true })
+    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
     updater_id?: number;
 
     @BelongsTo(() => User, 'updater_id')
     updater: User;
 
     @ForeignKey(() => User)
-    @Column({ type: DataType.INTEGER, allowNull: true })
+    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
     deleter_id?: number;
 
     @BelongsTo(() => User, 'deleter_id')
     deleter: User;
-
 
     @HasMany(() => UserLogs)
     userLogs: UserLogs[];
@@ -118,4 +125,3 @@ class User extends Model<User> {
 }
 
 export default User;
-

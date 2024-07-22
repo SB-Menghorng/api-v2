@@ -6,14 +6,18 @@ import User     from './user.model';
 
 @Table({ tableName: 'users_type', createdAt: 'created_at', updatedAt: 'updated_at' })
 class UsersType extends Model<UsersType> {
+
+    @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
+    id: number;
+    
     @Column({ type: DataType.STRING(150), allowNull: false, defaultValue: '' })
     en_name: string;
 
     @Column({ type: DataType.STRING(150), allowNull: false, defaultValue: '' })
     kh_name: string;
 
-    // @HasMany(() => User)
-    // users: User[];
+    @HasMany(() => User)
+    users: User[];
 }
 
 export default UsersType;
