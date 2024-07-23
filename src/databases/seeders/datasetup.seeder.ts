@@ -1,11 +1,11 @@
-// ================================================================>> Third Party Library
-
 // ================================================================>> Custom Library
-import Department from '../../models/users/Department.model';
-import UsersJob from '../../models/users/Job.model';
-import UsersTitle from '../../models/users/Title.model';
-import Position from '../../models/users/Position.model';
-
+import Department           from '../../models/users/Department.model';
+import UsersJob             from '../../models/users/Job.model';
+import UsersTitle           from '../../models/users/Title.model';
+import Position             from '../../models/users/Position.model';
+import FileExtension        from '../../models/Document/DocumentFileExtension.model';
+import FundSource           from '../../models/Document/FundSource.model';
+import DocSubject           from '../../models/Document/Subject.model';
 export class DataSetupSeeder {
 
     seed = async () => {
@@ -13,6 +13,11 @@ export class DataSetupSeeder {
         await this.bulkInsert(UsersTitle, dataSetup.users_title, 'users_title');
         await this.bulkInsert(UsersJob, dataSetup.users_job, 'users_job');
         await this.bulkInsert(Position, dataSetup.position, 'position');
+        await this.bulkInsert(FileExtension, dataSetup.file_extension, 'file_extension');
+        await this.bulkInsert(FundSource, dataSetup.fund_source, 'fund_source');
+        await this.bulkInsert(DocSubject, dataSetup.doc_subject, 'doc_subject');
+
+
     }
 
     private async bulkInsert(model: any, data: any[], modelName: string) {
@@ -201,5 +206,147 @@ const dataSetup = {
             kh_name: 'ទីព្រឹក្សា',
             en_name: 'Advisor'
         },
+    ],
+    file_extension: [
+        { name: 'PDF', icon: 'static/tdms/file_extension/psd.png' },
+        { name: 'JPG', icon: 'static/tdms/file_extension/jpg.png' },
+        { name: 'PNG', icon: 'static/tdms/file_extension/png.png' },
+        { name: 'DOC', icon: 'static/tdms/file_extension/doc.png' },
+        { name: 'XLS', icon: 'static/tdms/file_extension/xls.png' },
+        { name: 'PTT', icon: 'static/tdms/file_extension/ptt.png' },
+        { name: 'ZIP', icon: 'static/tdms/file_extension/zip.png' },
+        { name: 'AI', icon: 'static/tdms/file_extension/ai.png' },
+    ], 
+    fund_source: [
+        {
+            id: 1,
+            abbre: "ABD",
+            en_name: "Asian Development Bank",
+            kh_name: "ធនាគារអភិវឌ្ឃន៍អាស៊ី",
+            logo: 'static/tdms/fund_source/ABD.png'
+        },
+        {
+            id: 2,
+            abbre: "CHA",
+            en_name: "China",
+            kh_name: "ចិន",
+            logo: "static/tdms/fund_source/CHA.png"
+        },
+        {
+            id: 3,
+            abbre: "RGC",
+            en_name: "Royal Government of Cambodia",
+            kh_name: "រាជរដ្ឋាភិបាលកម្ពុជា",
+            logo: "static/tdms/fund_source/RGC.png"
+        },
+        {
+            id: 4,
+            abbre: "JPN",
+            en_name: "Japan",
+            kh_name: "ជប៉ុន",
+            logo: "static/tdms/fund_source/JPN.png"
+        },
+        {
+            id: 5,
+            abbre: "KRA",
+            en_name: "Korea",
+            kh_name: "កូរ៉ែ",
+            logo: "static/tdms/fund_source/KRA.png"
+        },
+        {
+            id: 6,
+            abbre: "THA",
+            en_name: "Thailand",
+            kh_name: "ថៃ",
+            logo: "static/tdms/fund_source/THA.png"
+        },
+        {
+            id: 7,
+            abbre: "USA",
+            en_name: "United States of America",
+            kh_name: "សហរដ្ឋអាមេរិកវៀតណាម",
+            logo: "static/tdms/fund_source/USA.png"
+        },
+        {
+            id: 8,
+            abbre: "VN",
+            en_name: "Vietnam",
+            kh_name: "វៀតណាម",
+            logo: "static/tdms/fund_source/VN.png"
+        },
+        {
+            id: 9,
+            abbre: "Others",
+            en_name: "Others",
+            kh_name: "ផ្សេងៗ",
+            logo: "static/tdms/fund_source/Others.png"
+        },
+    ],
+    doc_subject: [
+        {
+            id: 1,
+            type_id: 1,
+            en_name:"Royal Decree",
+            kh_name: "រាជក្រឹត្យ",
+            abbre: "RD",
+            icon: ""
+        },
+        {
+            id: 2,
+            type_id: 1,
+            en_name:"Sub-Decree",
+            kh_name: "អនុក្រឹត្យ",
+            abbre: "SD",
+            icon: ""
+        },
+        {
+            id: 3,
+            type_id: 1,
+            en_name:"Decision",
+            kh_name: "សេចក្ដីសម្រេច",
+            abbre: "DC",
+            icon: ""
+        },
+        {
+            id: 4,
+            type_id: 1,
+            en_name:"Announcement",
+            kh_name: "ប្រកាស",
+            abbre: "AN",
+            icon: ""
+        },
+        {
+            id: 5,
+            type_id: 1,
+            en_name:"Regulation",
+            kh_name: "បទដ្ដានគតិយុត្តិ",
+            abbre: "RG",
+            icon: ""
+        },
+        {
+            id: 6,
+            type_id: 2,
+            en_name:"Specification Standard",
+            kh_name: "បទដ្ឋានបច្ចេកទេស",
+            abbre: "RD",
+            icon: ""
+        },
+        {
+            id: 7,
+            type_id: 2,
+            en_name:"GuideLine",
+            kh_name: "សេចក្ដីណែនាំ",
+            abbre: "GL",
+            icon: ""
+        },
+        {
+            id: 8,
+            type_id: 3,
+            en_name:"BOQ",
+            kh_name: "BOQ",
+            abbre: "BOQ",
+            icon: ""
+        },
     ]
+    
 }
