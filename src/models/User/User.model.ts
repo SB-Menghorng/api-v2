@@ -2,14 +2,15 @@
 import { Model, Column, Table, BelongsTo, ForeignKey, DataType, HasMany } from 'sequelize-typescript';
 
 // ================================================================>> Custom Library
-import UsersType from './Type.model';
-import Department from './Department.model';
-import Position from './Position.model';
-import UsersJob from './Job.model';
-import UsersTitle from './Title.model';
-import UserLogs from './Log.model';
-import UserVerifiedCodes from './Code.model';
-import { UsersActiveEnum } from '../../app/enums/user/active.enum';
+import UsersType                                from './Type.model';
+import Department                               from './Department.model';
+import Position                                 from './Position.model';
+import UsersJob                                 from './Job.model';
+import UsersTitle                               from './Title.model';
+import UserLogs                                 from './Log.model';
+import UserVerifiedCodes                        from './Code.model';
+import { UsersActiveEnum }                      from '../../app/enums/user/active.enum';
+
 
 @Table({ tableName: 'user', createdAt: 'created_at', updatedAt: 'updated_at' })
 class User extends Model<User> {

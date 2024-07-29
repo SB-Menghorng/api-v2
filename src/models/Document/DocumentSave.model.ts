@@ -1,9 +1,9 @@
 // ================================================================>> Third Party Library
 import { Table, Model, Column, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
 
-// ================================================================>> Costom Library
+// ================================================================>> Custom Library
 import Document                                                   from "./Document.model";
-import User                                                       from "../users/User.model";
+import User                                                       from "../User/User.model";
 
 
 @Table({ tableName: 'document_save', createdAt: 'created_at', updatedAt: 'updated_at' })

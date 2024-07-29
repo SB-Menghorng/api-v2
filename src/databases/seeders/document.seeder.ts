@@ -1,8 +1,8 @@
 // ================================================================>> Custom Library
-import DocumentType from "../../models/Document/Type.model";
-import Document from "../../models/Document/Document.model";
-import DocumentFiles from "../../models/Document/DocumentFile.model";
-import DocumentSave from "../../models/Document/DocumentSave.model";
+import DocumentType     from "../../models/Document/Type.model";
+import Document         from "../../models/Document/Document.model";
+import DocumentFiles    from "../../models/Document/DocumentFile.model";
+import DocumentSave     from "../../models/Document/DocumentSave.model";
 
 export class DocumentSeeder {
 

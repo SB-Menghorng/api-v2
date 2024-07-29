@@ -1,9 +1,9 @@
 // ================================================================>> Third Party Library
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt  from 'bcryptjs';
 
 // ================================================================>> Custom Library
-import UsersType from "../../models/users/Type.model";
-import User from '../../models/users/User.model';
+import UsersType    from "../../models/User/Type.model";
+import User         from '../../models/User/User.model';
 
 export class UserSeeder {
 

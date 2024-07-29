@@ -1,5 +1,5 @@
 // ================================================================>> Custom Library
-import Road from "../../models/Road/Road.model";
+import Road     from "../../models/Road/Road.model";
 import RoadType from "../../models/Road/Type.model";
 
 export class RoadSeeder {

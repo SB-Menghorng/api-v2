@@ -1,9 +1,10 @@
 // ================================================================>> Core Library
-import { Dialect } from 'sequelize';
+import { Dialect }          from 'sequelize';
 import { SequelizeOptions } from 'sequelize-typescript';
 
 // ================================================================>> Third Party Library
-import * as dotenv from 'dotenv';
+import * as dotenv          from 'dotenv';
+
 
 dotenv.config();
 

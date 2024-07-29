@@ -1,5 +1,5 @@
 // ================================================================>> Third Party Library
-import { Sequelize } from "sequelize-typescript"
+import { Sequelize }     from "sequelize-typescript"
 import * as readlineSync from 'readline-sync';
 import "colors";
 
