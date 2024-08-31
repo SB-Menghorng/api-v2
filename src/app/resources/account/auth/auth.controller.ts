@@ -1,5 +1,5 @@
 // ================================================================>> Core Library
-import { Body, Controller, HttpCode, HttpStatus, Post, Req, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, UseInterceptors } from '@nestjs/common';
 import { Request } from 'express'; // Import Request from express
 
 // ================================================================>> Custom Library
@@ -17,4 +17,12 @@ export class AuthController {
     async login(@Body() data: LoginRequestDto, @Req() req: Request): Promise<{ access_token: string, expires_in: string, user: UserDto }> {
         return await this.authService.login(data, req);
     }
+
+    @Get('setup')
+    @HttpCode(HttpStatus.OK)
+    async setup(){
+        const data = await this.authService.setup();
+        return data;
+    }
+
 }

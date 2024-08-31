@@ -17,7 +17,7 @@ const sequelizeConfig: SequelizeOptions = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     models: [__dirname + '/../models/**/*.model.{ts,js}'], // Process build and running it work with .js and local process like seeder it work with .ts
-    logging: false
+    logging: (msg) => console.log(`Sequelize: ${msg}`), // Enable logging
 };
 
 export default sequelizeConfig;

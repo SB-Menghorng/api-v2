@@ -2,7 +2,7 @@
 import { Sequelize }        from 'sequelize-typescript';
 import * as readlineSync    from 'readline-sync';
 import "colors";
-// ================================================================>> Costom Library
+// ================================================================>> Custom Library
 import sequelizeConfig      from '../../config/sequelize.config';
 
 

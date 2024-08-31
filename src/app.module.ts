@@ -5,6 +5,7 @@ import { AuthModule }                                            from './app/res
 import { RouterModule }                                          from '@nestjs/core';
 import { appRouts }                                              from './app.routing';
 import { JwtMiddleware }                                         from './app/middlewares/jwt.middleware';
+import { AdminModule }                                           from './app/resources/cp/admin/admin.module';
 
 
 @Module({
@@ -16,7 +17,9 @@ import { JwtMiddleware }                                         from './app/mid
       ConfigModule,
       // Load modules of TDMS resources
       AuthModule,
+      AdminModule,
       RouterModule.register(appRouts)
+
   ],
 })
 export class AppModule implements NestModule{
@@ -30,6 +33,8 @@ export class AppModule implements NestModule{
         {
           path: 'api/auth/login', method: RequestMethod.POST
         }
-      )
+      )            
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+
   }
 }

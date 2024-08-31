@@ -4,7 +4,7 @@ import { MulterModule }     from '@nestjs/platform-express';
 // ================================================================>> Third Party Library
 import * as multer          from 'multer';
 import { SequelizeModule }  from '@nestjs/sequelize';
-import sequlizeConfig       from './sequelize.config';
+import sequelizeConfig from './sequelize.config';
 
 
 @Global()
@@ -14,7 +14,7 @@ import sequlizeConfig       from './sequelize.config';
             storage: multer.memoryStorage(),
         }),
         SequelizeModule.forRoot({
-            ...sequlizeConfig
+            ...sequelizeConfig
         })
     ]
 })

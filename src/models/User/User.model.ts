@@ -17,55 +17,54 @@ class User extends Model<User> {
     @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
     id: number;
 
-    @ForeignKey(() => UsersType)
-    @Column({ type: DataType.INTEGER, allowNull: false, onDelete: 'CASCADE' })
+    @ForeignKey(() => UsersType) @Column({ allowNull: false, onDelete: 'CASCADE' })
     type_id: number;
 
     @BelongsTo(() => UsersType)
     type: UsersType;
 
     @ForeignKey(() => UsersTitle)
-    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
-    title_id?: number;
+    @Column({ allowNull: true, onDelete: 'CASCADE' })
+    title_id: number;
 
     @BelongsTo(() => UsersTitle)
     title: UsersTitle;
 
     @ForeignKey(() => Department)
-    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
-    department_id?: number;
+    @Column({ allowNull: true, onDelete: 'CASCADE' })
+    department_id: number;
 
     @BelongsTo(() => Department)
     department: Department;
 
     @ForeignKey(() => Position)
     @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
-    position_id?: number;
+    position_id: number;
 
     @BelongsTo(() => Position)
     position: Position;
 
     @ForeignKey(() => UsersJob)
-    @Column({ type: DataType.INTEGER, allowNull: true, onDelete: 'CASCADE' })
-    job_id?: number;
+    @Column({ allowNull: true, onDelete: 'CASCADE' })
+    job_id: number;
 
     @BelongsTo(() => UsersJob)
     job: UsersJob;
 
     @Column({ type: DataType.INTEGER, allowNull: true })
-    sex_id?: number;
+    sex_id: number;
 
     @Column({ type: DataType.STRING(50), allowNull: true })
-    username?: string;
+    username: string;
 
     @Column({ type: DataType.STRING(100), allowNull: false, defaultValue: 'file/serve/f0c86c3a-4529-4fd1-98aa-694f62fbccb4' })
     avatar: string;
 
     @Column({ type: DataType.STRING(50), allowNull: true })
-    phone?: string;
+    phone: string;
 
     @Column({ type: DataType.STRING(50), allowNull: true })
-    email?: string;
+    email: string;
 
     @Column({ type: DataType.TINYINT, allowNull: false, defaultValue: 0 })
     is_email_verified: number;

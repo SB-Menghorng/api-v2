@@ -7,7 +7,7 @@ import { InjectModel }                      from "@nestjs/sequelize";
 import * as jwt                             from 'jsonwebtoken';
 import * as bcrypt                          from "bcryptjs"
 // ================================================================>> Custom Library
-import { UserDto }                          from "./auth.dto";
+import { RegisterDto, UserDto }                          from "./auth.dto";
 import User                                 from "../../../../models/User/User.model";
 import { UsersActiveEnum }                  from "../../../../app/enums/user/active.enum";
 import UsersType                            from "../../../../models/User/Type.model";
@@ -28,10 +28,10 @@ interface LoginPayload {
 export class AuthService {
     constructor(
         private readonly ipAddressService: IpAddressService,
-        // @InjectModel(UsersJob) private readonly jobModel: typeof UsersJob,
-        // @InjectModel(Department) private readonly departmentModel: typeof Department,
-        // @InjectModel(Position) private readonly positionModel: typeof Position,
-        // @InjectModel(UsersTitle) private readonly titleModel: typeof UsersTitle,
+        @InjectModel(UsersJob) private readonly jobModel: typeof UsersJob,
+        @InjectModel(Department) private readonly departmentModel: typeof Department,
+        @InjectModel(Position) private readonly positionModel: typeof Position,
+        @InjectModel(UsersTitle) private readonly titleModel: typeof UsersTitle,
     ) {}
 
   /** @userLogin */
@@ -50,6 +50,9 @@ async login(body: LoginPayload, req: Request): Promise<{  access_token: string, 
             is_active: UsersActiveEnum.Active
         };
     try {
+
+        const jj = await Department.findAll();
+        console.log(jj)
         user = await User.findOne({
             where: whereCondition,
             attributes: ['id', 'username', 'avatar', 'phone', 'email', 'password'],
@@ -102,15 +105,38 @@ async login(body: LoginPayload, req: Request): Promise<{  access_token: string, 
 
 }
 private _generateToken(user: User): string {
-        return jwt.sign (
-            {
-                user: new UserDto(user),
-                role: user.type.en_name,
-            },
-            jwtConstants.secret,
-            {
-                expiresIn: jwtConstants.expiresIn, 
-            }
-        );
-    } 
+    const payload = {
+        user: {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+        },
+        role: user.type.en_name,
+    };
+
+    // Log the token for debugging purposes
+    const token = jwt.sign(payload, jwtConstants.secret, {
+        expiresIn: jwtConstants.expiresIn,
+    });
+    console.log('Generated Token:', token); // Add this line for debugging
+
+    return token;
+}
+
+
+async setup() {
+    const jobs = await this.jobModel.findAll({ attributes: ['id', 'kh_name', 'en_name'] });
+    const departments = await this.departmentModel.findAll({ attributes: ['id', 'kh_name', 'en_name', 'abbre'] });
+    const positions = await this.positionModel.findAll({ attributes: ['id', 'kh_name', 'en_name'] });
+    const title = await this.titleModel.findAll({ attributes: ['id', 'name', 'abbre'] });
+
+    return {
+      jobs,
+      departments,
+      positions,
+      title,
+    };
+}
+
+
 }   
